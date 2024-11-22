@@ -1,0 +1,1197 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Video Style Transfer with Map art</title>
+<body style="background-color:#17202A  ; color: #FDFEFE">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+body,h1 {font-family: "Raleway", Arial, sans-serif}
+h1 {letter-spacing: 6px}
+.w3-row-padding img {margin-bottom: 12px}
+</style>
+</head>
+<body>
+
+<!-- !PAGE CONTENT! -->
+<div class="w3-content" style="max-width:1500px">
+
+<!-- Header -->
+<header class="w3-panel w3-center w3-opacity" style="padding:28px 16px">  
+  <h1 style="color:rgb(220, 207, 20); font-weight: bold;">      Structure-aware Video Style Transfer with Map art </h1>  
+  <h4>Thi-Ngoc-Hanh Le, Ya-Hsuan Chen, and Tong-Yee Lee, Senior Member, IEEE </h4>
+  <h2 class="w3-xlarge">National Cheng-Kung University</h2>
+
+  <div class="w3-padding-32"> 
+    <div class="w3-bar w3-border">
+      <a href="index.html" class="w3-bar-item w3-button w3-light-grey">Home</a>              
+      <a href="#id_Evaluation_result" class="w3-bar-item w3-button"> Video Results</a> 
+      <a href="#id_image_results" class="w3-bar-item w3-button"> Image Results</a> 
+      <a href="#id_comparisons" class="w3-bar-item w3-button"> Comparisons</a>       
+      <a href="#id_demo_video" class="w3-bar-item w3-button">Demo video</a>           
+      <a href="#id_bad_cases" class="w3-bar-item w3-button">Failure result</a>  
+      <a href="https://github.com/LeHanhcs/MapArt_animation" class="w3-bar-item w3-button">Source code</a>    
+                   	    
+    </div>
+   </div>
+</header>
+
+
+<table align='center'; width=1200px;> 		 	
+					 <tbody><tr>				    
+  					<td width="800px">  	
+              <center>
+                <video autoplay autoplay controls muted loop muted loop
+                    src="./data/teaser.mp4"	
+                    width="800px">
+                  </video>						
+                </center>              										
+              </td>
+          
+          </tr>
+          <tr>
+            <td width="800px">
+              <center><h1>Abstract</h1></center>
+              <hr> 
+                <p align='justify',style='font-size:20; font-weight: bold'>	 Changing the style of an image/video while preserving its content is a crucial criterion to access 
+                  a new neural style transfer algorithm. However, it is very challenging to transfer a new map art style to a certain
+                  video in which \say{content} comprises a map background and animation objects. 
+                  In this paper, we present a novel comprehensive system that solves the problems in transferring map art style in such video. 
+                  Our system takes as input an arbitrary video, a map image, and an off-the-shelf map art image. 
+                  It then generates an artistic video without damaging the functionality of the map and the consistency in details. 
+                  To solve this challenge, we propose a novel network, Map Art Video Network (MAViNet), the tailored objective functions, 
+                  and a rich training set with rich animation contents and different map structures. We have evaluated our method on various challenging cases 
+                  and many comparisons with those of the related works. Our method substantially outperforms state-of-the-art methods in terms of visual quality 
+                  and meets the mentioned criteria in this research domain. 
+                <hr>
+          <p align='justify';style='font-size:16.0pt; font-weight: bold'> Keywords -- style transfer video, coherence, map art, CNN, MAViNet
+              <br>	 	  		           
+          	
+		  				</tr>
+   
+			  </tbody></table>  
+        
+        <table align='center'; width=1300px; style="background-color:gray;">
+          <tbody>
+            <tr>
+              <td width = "650px">                  
+                      <h2 class="title">BibTeX</h2>
+                      <code>@article{lestructure, <br>
+                      title={Structure-aware Video Style Transfer with Map Art}, <br>
+                      author={Le, Thi-Ngoc-Hanh and Chen, Ya-Hsuan and Lee, Tong-Yee}, <br>
+                      journal={ACM Transactions on Multimedia Computing, Communications and Applications}, <br>
+                      publisher={ACM New York, NY}<br>
+                    }
+                  </code>
+              </td>
+              <td width = "50px">                              
+              
+              </td>
+              <td width = "500px">
+                <h2 class="title">Grant</h2>                
+                This work was supported in part by the National Science and Technology Council, 
+                (under Nos. 111-2221-E-006-112-MY3 and 110-2221-E-006-135-MY3) Taiwan, Republic of China.
+              </td>              
+            </tr>
+      </table>
+
+            
+         <!-- ------------------------------------------------------------- Evaluation result -------------------------------------------->
+         <table align='center'; width=1500px; style="color:burlywood">
+          <tbody>
+            <tr>
+              <td width = "500px">
+              </td>
+              <td align="center" width = "700px">                
+                <h1><a id="id_Evaluation_result">Results</a></h1>                        
+              <hr>
+              </td>
+              <td width = "500px">
+              </td>              
+            </tr>           
+          </table>
+      
+          
+          <table align='center'; width=1500px>
+            <tbody>
+              <tr>
+                <td width = "350px">
+                </td>
+                <td align="center" width = "1100px">                
+                  <h4>Our system generates different MArt styles with different content videos</a></h4>                                        
+                </td>   
+                
+                <td width = "350px">
+                </td>              
+              </tr>           
+            </table>
+            <hr>
+          <table align='center'; width=1500px>
+            <tr>
+              <td width="350px">
+                <center>
+                  
+                  </center>    
+              </td>	    
+              
+              <td width = "20px">
+              </td>
+              <td width="350px">
+                <center>
+                  <img src="./data/00001.jpg" width="250px">
+                  <br>
+                  <h4>Brusells style</h4>  
+                  </center>    
+              </td>	     
+                <td width = "20px">
+                </td>      			   
+
+                <td width="350px">
+                  <center>
+                    <img src="./data/00002.jpg" width="250px">
+                    <br>
+                    <h4>Chester style</h4>  
+                    </center>    
+                </td>	      
+
+                <td width = "20px">
+                </td>     
+                <td width="350px">
+                  <center>
+                    <img src="./data/00003.jpg" width="250px">
+                    <br>
+                    <h4>Colorado style</h4>  
+                    </center>    
+                </td>	    
+            </tr>
+            <tr>
+              <td width="350px">
+                <center>
+                  <video autoplay controls muted loop
+                    src="./data/Giffy_s1.mp4"	
+                    width="350px">
+                  </video>		
+                  </center>    
+              </td>	    
+              
+              <td width = "20px">
+              </td>
+              <td width="350px">
+                  <center>
+                    <video autoplay controls muted loop
+                      src="./data/giffy_1.mp4"	
+                      width="350px">
+                    </video>			
+                    </center>    
+                </td>	    
+                <td width = "20px">
+                </td>      			   
+
+                <td width="350px">
+                  <center>
+                    <video autoplay controls muted loop
+                      src="./data/giffy_2.mp4"	
+                      width="350px">
+                    </video>		
+                    </center>    
+                </td>	    
+
+                <td width = "20px">
+                </td>     
+                <td width="350px">
+                  <center>
+                    <video autoplay controls muted loop
+                      src="./data/giffy_3.mp4"	
+                      width="350px">
+                    </video>			
+                    </center>    
+                </td>    
+                </tr>
+              <tr>
+                <td width="350px">
+                  <center>
+                    <video autoplay controls muted loop
+                      src="./data/Flower_s1.mp4"	
+                      width="350px">
+                    </video>		
+                    </center>    
+                </td>	    
+                
+                <td width = "20px">
+                </td>
+                <td width="350px">
+                    <center>
+                      <video autoplay controls muted loop
+                        src="./data/Flower_1.mp4"	
+                        width="350px">
+                      </video>	
+                      </center>    
+                  </td>	    
+                  <td width = "20px">
+                  </td>      			   
+  
+                  <td width="350px">
+                    <center>
+                      <video autoplay controls muted loop
+                        src="./data/Flower_2.mp4"	
+                        width="350px">
+                      </video>		
+                      </center>    
+                  </td>	    
+  
+                  <td width = "20px">
+                  </td>     
+                  <td width="350px">
+                    <center>
+                      <video autoplay controls muted loop
+                        src="./data/Flower_3.mp4"	
+                        width="350px">
+                      </video>		
+                      </center>    
+                  </td>    
+            </tr>
+            <tr>
+              <td width="350px">
+                <center>
+                  <video autoplay controls muted loop
+                    src="./data/breakdance_s.mp4"	
+                    width="350px">
+                  </video>		
+                  </center>    
+              </td>	    
+              
+              <td width = "20px">
+              </td>
+              <td width="350px">
+                  <center>
+                    <video autoplay controls muted loop
+                      src="./data/Breakdance_1.mp4"	
+                      width="350px">
+                    </video>	
+                    </center>    
+                </td>	    
+                <td width = "20px">
+                </td>      			   
+
+                <td width="350px">
+                  <center>
+                    <video autoplay controls muted loop
+                      src="./data/Breakdance_2.mp4"	
+                      width="350px">
+                    </video>	
+                    </center>    
+                </td>	    
+
+                <td width = "20px">
+                </td>     
+                <td width="350px">
+                  <center>
+                    <video autoplay controls muted loop
+                      src="./data/Breakdance_3.mp4"	
+                      width="350px">
+                    </video>
+                    </center>    
+                </td>    
+          </tr>
+
+          <tr>
+            <td width="350px">
+              <center>
+                <video autoplay controls muted loop
+                  src="./data/dance_twirl_s.mp4"	
+                  width="350px">
+                </video>		
+                </center>    
+            </td>	    
+            
+            <td width = "20px">
+            </td>
+            <td width="350px">
+                <center>
+                  <video autoplay controls muted loop
+                    src="./data/dance_twirl_1.mp4"	
+                    width="350px">
+                  </video>	
+                  </center>    
+              </td>	    
+              <td width = "20px">
+              </td>      			   
+
+              <td width="350px">
+                <center>
+                  <video autoplay controls muted loop
+                    src="./data/dance_twirl_2.mp4"	
+                    width="350px">
+                  </video>	
+                  </center>    
+              </td>	    
+
+              <td width = "20px">
+              </td>     
+              <td width="350px">
+                <center>
+                  <video autoplay controls muted loop
+                    src="./data/dance_twirl_3.mp4"	
+                    width="350px">
+                  </video>
+                  </center>    
+              </td>    
+        </tr>
+
+          <tr>
+            <td width="350px">
+              <center>
+                <video autoplay controls muted loop
+                  src="./data/schoolgirls_s1.mp4"	
+                  width="350px">
+                </video>	
+                </center>    
+            </td>	    
+            
+            <td width = "20px">
+            </td>
+            <td width="350px">
+                <center>
+                  <video autoplay controls muted loop
+                    src="./data/schoolgirl_1.mp4"	
+                    width="350px">
+                  </video>	
+                  </center>    
+              </td>	    
+              <td width = "20px">
+              </td>      			   
+
+              <td width="350px">
+                <center>
+                  <video autoplay controls muted loop
+                    src="./data/schoolgirl_2.mp4"	
+                    width="350px">
+                  </video>	
+                  </center>    
+              </td>	    
+
+              <td width = "20px">
+              </td>     
+              <td width="350px">
+                <center>
+                  <video autoplay controls muted loop
+                    src="./data/schoolgirl_3.mp4"	
+                    width="350px">
+                  </video>		
+                  </center>    
+              </td>    
+        </tr>
+      </table>
+      <hr>
+
+      <table align='center'; width=1500px>
+        <tbody>
+          <tr>
+            <td width = "100px">
+            </td>
+            <td align="center" width = "1300px">                
+              <h4>Results on raw content videos, i.e., we hypothesize that the background of the input video is the map and we want to preserve the content structure of the background</h4>                                        
+            </td>
+            <td width = "100px">
+            </td>              
+          </tr>           
+        </table>
+      
+        <table align='center'; width=1500px; style="color:burlywood">
+          <tr>
+            <td width="350px">
+              <center>
+                <video autoplay controls muted loop
+                  src="./data/raw_1s.mp4"	
+                  width="350px">
+                </video>	
+                </center>    
+            </td>	    
+            
+            <td width = "20px">
+            </td>
+            <td width="350px">
+                <center>
+                  <video autoplay controls muted loop
+                    src="./data/raw_1.mp4"	
+                    width="350px">
+                  </video>	
+                  </center>    
+              </td>	    
+              <td width = "20px">
+              </td>      			   
+
+              <td width="350px">
+                <center>
+                  <video autoplay controls muted loop
+                    src="./data/raw2_s.mp4"	
+                    width="350px">
+                  </video>	
+                  </center>    
+              </td>	    
+
+              <td width = "20px">
+              </td>     
+              <td width="350px">
+                <center>
+                  <video autoplay controls muted loop
+                    src="./data/raw_2.mp4"	
+                    width="350px">
+                  </video>	
+                  </center>    
+              </td>    
+              </tr>
+          </table>
+        <hr>
+        
+        <table align='center'; width=1500px>
+          <tbody>
+            <tr>
+              <td width = "500px">
+              </td>
+              <td align="center" width = "700px">                
+               
+              </td>
+              <td width = "500px">
+              </td>              
+            </tr>           
+        </table>
+
+        <table align='center'; width=1500px; style="color:burlywood">
+          <tr>
+            <td width="350px">
+              <center>
+                
+                </center>    
+            </td>	    
+            
+            <td width = "20px">
+            </td>
+            <td width="350px">
+              <center>
+                <img src="./data/00000.jpg" width="250px">
+                  
+                </center>    
+            </td>	     
+              <td width = "20px">
+              </td>      			   
+
+              <td width="350px">
+                <center>
+                  <img src="./data/00011.jpg" width="250px">
+                  
+                  </center>    
+              </td>	      
+
+              <td width = "20px">
+              </td>     
+              <td width="350px">
+                <center>
+                  <img src="./data/00006.jpg" width="250px">
+                  
+                  </center>    
+              </td>	    
+          </tr>
+          <tr>
+            <td width="350px">
+              <center>
+                <video autoplay controls muted loop
+                  src="./data/Cat_s.mp4"	
+                  width="350px">
+                </video>	
+                </center>    
+            </td>	    
+            
+            <td width = "20px">
+            </td>
+            <td width="350px">
+                <center>
+                  <video autoplay controls muted loop
+                    src="./data/Cat_4.mp4"	
+                    width="350px">
+                  </video>	
+                  </center>    
+              </td>	    
+              <td width = "20px">
+              </td>      			   
+
+              <td width="350px">
+                <center>
+                  <video autoplay controls muted loop
+                    src="./data/Cat_5.mp4"	
+                    width="350px">
+                  </video>	
+                  </center>    
+              </td>	    
+
+              <td width = "20px">
+              </td>     
+              <td width="350px">
+                <center>
+                  <video autoplay controls muted loop
+                    src="./data/Cat_6.mp4"	
+                    width="350px">
+                  </video>	
+                  </center>    
+              </td>    
+          </tr>
+          </table>
+          <hr>
+
+          <table>
+          <tr>
+            <td width="350px">
+              <center>
+                
+                </center>    
+            </td>	    
+            
+            <td width = "20px">
+            </td>
+            <td width="350px">
+              <center>
+                <img src="./data/00002.jpg" width="250px">
+                
+                </center>    
+            </td>	     
+              <td width = "20px">
+              </td>      			   
+
+              <td width="350px">
+                <center>
+                  <img src="./data/00000.jpg" width="250px">
+                  
+                  </center>    
+              </td>	      
+
+              <td width = "20px">
+              </td>     
+              <td width="350px">
+                <center>
+                  <img src="./data/00001.jpg" width="250px">
+                  
+                  </center>    
+              </td>	    
+          </tr>
+        </table>
+        
+           
+        <table>
+          <tr>
+            <td width="350px">
+              <center>
+                <video autoplay controls muted loop
+                  src="./data/girl_run_s.mp4"	
+                  width="350px">
+                </video>
+                </center>    
+            </td>	    
+            
+            <td width = "20px">
+            </td>
+            <td width="350px">
+                <center>
+                  <video autoplay controls muted loop
+                    src="./data/girl_run_1.mp4"	
+                    width="350px">
+                  </video>	
+                  </center>    
+              </td>	    
+              <td width = "20px">
+              </td>      			   
+
+              <td width="350px">
+                <center>
+                  <video autoplay controls muted loop
+                    src="./data/girl_run_2.mp4"	
+                    width="350px">
+                  </video>	
+                  </center>    
+              </td>	    
+
+              <td width = "20px">
+              </td>     
+              <td width="350px">
+                <center>
+                  <video autoplay controls muted loop
+                    src="./data/girl_run_3.mp4"	
+                    width="350px">
+                  </video>	
+                  </center>    
+              </td>    
+          </tr>
+      </table>
+      <hr>
+
+      <table align='center'; width=1500px; style="color:burlywood">
+        <tr>
+          <td width = "150px">
+          </td>
+          <td align="center" width = "1200px">                
+            <h1><a id="id_image_results">Results on single images</a></h1>                       
+          <hr>
+          </td>
+          <td width = "150px">
+          </td>              
+        </tr>
+      </table>
+      
+      <table align='center'; width = "1500px">        
+        <tr>
+          <td width="250px">
+            <center>
+              <img src="./data/single_1/D.jpg" width="250px">
+              </center>    
+          </td>	    
+          
+          <td width = "5px">
+          </td>
+          <td width="250px">
+            <center>
+              <img src="./data/single_1/00000.jpg" width="250px">
+              </center>    
+          </td>	    
+          
+          <td width = "5px">
+          </td>
+          <td width="250px">
+            <center>
+              <img src="./data/single_1/bit10.jpg" width="250px">
+              
+              </center>    
+          </td>	     
+            <td width = "5px">
+            </td>      			   
+
+            <td width="250px">
+              <center>
+                <img src="./data/single_1/cat1.jpg" width="250px">
+                
+                </center>    
+            </td>	      
+
+            <td width = "5px">
+            </td>     
+            <td width="250px">
+              <center>
+                <img src="./data/single_1/plpl4.jpg" width="250px">
+                
+                </center>    
+            </td>	    
+            <td width = "5px">
+            </td>     
+            <td width="250px">
+              <center>
+                <img src="./data/single_1/cat7.jpg" width="250px">
+                
+                </center>    
+            </td>	    
+        </tr>
+      </table>
+      <hr>
+
+      
+      <table align='center'; width=1500px>
+        <tr>
+          <td width = "150px">
+          </td>
+          <td align="center" width = "1200px">                
+            <h4>Results on single images with natural content, i.e., non-map-background</h4>                       
+          <hr>
+          </td>
+          <td width = "150px">
+          </td>              
+        </tr>
+      </table>
+      
+      <table align='center'; width = "1500px">       
+        <tr>
+          <td width="250px">
+            <center>
+                          
+              </center>    
+          </td>	    
+          <td width = "5px">
+          </td> 
+          <td width="250px">
+            <center>
+              <img src="./data/single_2/golden_gate_s.jpg" width="250px">
+              </center>    
+          </td>	    
+          
+          <td width = "5px">
+          </td>
+          <td width="250px">
+            <center>
+              <img src="./data/single_2/newyork_s.jpg" width="250px">
+              </center>    
+          </td>	    
+          
+          <td width = "5px">
+          </td>
+          <td width="250px">
+            <center>
+              <img src="./data/single_2/sailboat_s.jpg" width="250px">
+              
+              </center>    
+          </td>	     
+            <td width = "5px">
+            </td>      			   
+
+            <td width="250px">
+              <center>
+                <img src="./data/single_2/valley_s.jpg" width="250px">
+                
+                </center>    
+            </td>	      
+            
+            <td width = "5px">
+            </td>     
+            <td width="250px">
+              <center>
+                <img src="./data/single_2/chicago_s.jpg" width="250px">
+                
+                </center>    
+            </td>	    
+        </tr> 
+        <tr>
+          <td width="250px">
+            <center>
+              <img src="./data/00011.jpg" width="250px">
+              
+              </center>    
+          </td>	    
+          <td width = "5px">
+          </td> 
+          <td width="250px">
+            <center>
+              <img src="./data/single_2/golden_gate.jpg" width="250px">
+              </center>    
+          </td>	    
+          
+          <td width = "5px">
+          </td>
+          <td width="250px">
+            <center>
+              <img src="./data/single_2/newyork.jpg" width="250px">
+              </center>    
+          </td>	    
+          
+          <td width = "5px">
+          </td>
+          <td width="250px">
+            <center>
+              <img src="./data/single_2/sailboat.jpg" width="250px">
+              
+              </center>    
+          </td>	     
+            <td width = "5px">
+            </td>      			   
+
+            <td width="250px">
+              <center>
+                <img src="./data/single_2/valley.jpg" width="250px">
+                
+                </center>    
+            </td>	      
+            
+            <td width = "5px">
+            </td>     
+            <td width="250px">
+              <center>
+                <img src="./data/single_2/chicago.jpg" width="250px">
+                
+                </center>    
+            </td>	    
+        </tr>
+        <tr>
+          <td width="250px">
+            <center>
+              <img src="./data/00006.jpg" width="250px">
+              
+              </center>    
+          </td>	    
+          <td width = "5px">
+          </td> 
+          <td width="250px">
+            <center>
+              <img src="./data/single_2/golden_gate_1.jpg" width="250px">
+              </center>    
+          </td>	    
+          
+          <td width = "5px">
+          </td>
+          <td width="250px">
+            <center>
+              <img src="./data/single_2/newyork_1.jpg" width="250px">
+              </center>    
+          </td>	    
+          
+          <td width = "5px">
+          </td>
+          <td width="250px">
+            <center>
+              <img src="./data/single_2/sailboat_1.jpg" width="250px">
+              
+              </center>    
+          </td>	     
+            <td width = "5px">
+            </td>      			   
+
+            <td width="250px">
+              <center>
+                <img src="./data/single_2/valley_.jpg" width="250px">
+                
+                </center>    
+            </td>	      
+            
+            <td width = "5px">
+            </td>     
+            <td width="250px">
+              <center>
+                <img src="./data/single_2/chicago_1.jpg" width="250px">
+                
+                </center>    
+            </td>	    
+        </tr>
+        <tr>
+          <td width="250px">
+            <center>
+              <img src="./data/00001.jpg" width="250px">
+              
+              </center>    
+          </td>	    
+          <td width = "5px">
+          </td> 
+          <td width="250px">
+            <center>
+              <img src="./data/single_2/golden_gate_2.jpg" width="250px">
+              </center>    
+          </td>	    
+          
+          <td width = "5px">
+          </td>
+          <td width="250px">
+            <center>
+              <img src="./data/single_2/newyork_2.jpg" width="250px">
+              </center>    
+          </td>	    
+          
+          <td width = "5px">
+          </td>
+          <td width="250px">
+            <center>
+              <img src="./data/single_2/sailboat_2.jpg" width="250px">
+              
+              </center>    
+          </td>	     
+            <td width = "5px">
+            </td>      			   
+
+            <td width="250px">
+              <center>
+                <img src="./data/single_2/valley_2.jpg" width="250px">
+                
+                </center>    
+            </td>	      
+            
+            <td width = "5px">
+            </td>     
+            <td width="250px">
+              <center>
+                <img src="./data/single_2/chicago_2.jpg" width="250px">
+                
+                </center>    
+            </td>	    
+        </tr>
+      </table>
+      <hr>
+      <!------------------------------------------------------ new section --------------------------------------------->
+
+      <table align='center'; width=1500px; style="color:burlywood">
+        <tr>
+          <td width = "500px">
+          </td>
+          <td align="center" width = "500px">                
+            <h1><a id="id_comparisons">Comparisons</a></h1>                       
+          <hr>
+          </td>
+          <td width = "500px">
+          </td>              
+        </tr>
+      </table>
+
+       
+      <table>
+        <tr>
+          <td width="350px">
+            <center>
+              <video autoplay controls muted loop
+                src="./data/compare/breakdance_s2.mp4"	
+                width="350px">
+              </video> <br>
+              <h4>Input video</h4>
+              </center>    
+          </td>	    
+          
+          <td width = "20px">
+          </td>
+          <td width="350px">
+              <center>
+                <video autoplay controls muted loop
+                  src="./data/compare/breakdance_Johnson.mp4"	
+                  width="350px">
+                </video>	<br>
+                <h4>[Johnson et al.]</h4>
+                </center>    
+            </td>	    
+            <td width = "20px">
+            </td>      			   
+
+            <td width="350px">
+              <center>
+                <video autoplay controls muted loop
+                  src="./data/compare/breakdance_AdaIN.mp4"	
+                  width="350px">
+                </video>	<br>
+                <h4>AdaIN</h4>
+                </center>    
+            </td>	    
+
+            <td width = "20px">
+            </td>     
+            <td width="350px">
+              <center>
+                <video autoplay controls muted loop
+                  src="./data/compare/breakdance_MCCNet.mp4"	
+                  width="350px">
+                </video>	<br>
+                <h4>MCCNet</h4>
+                </center>     
+            </td>    
+        </tr>
+        <tr>
+          <td width="350px">
+            <center>
+              <img src="./data/00003.jpg" width="300px"> <br>
+              <h4>MArt style</h4>
+              </center>    
+          </td>	    
+          
+          <td width = "20px">
+          </td>
+          <td width="350px">
+              <center>
+                <video autoplay controls muted loop
+                  src="./data/compare/breakdance_Artflow.mp4"	
+                  width="350px">
+                </video>	<br>
+                <h4>ArtFlow</h4>
+                </center>    
+            </td>	    
+            <td width = "20px">
+            </td>      			   
+
+            <td width="350px">
+              <center>
+                <video autoplay controls muted loop
+                  src="./data/compare/breakdance_Shih.mp4"	
+                  width="350px">
+                </video>	<br>
+                <h4>[Shih et al.]</h4>
+                </center>    
+            </td>	    
+
+            <td width = "20px">
+            </td>     
+            <td width="350px">
+              <center>
+                <video autoplay controls muted loop
+                  src="./data/compare/breakdance_ours.mp4"	
+                  width="350px">
+                </video>	<br>
+                <h4>Our result</h4>
+                </center>     
+            </td>    
+        </tr>
+      </table>
+      <hr>
+
+
+      <table>
+        <tr>
+          <td width="250px">
+            <center>
+              <video autoplay controls muted loop
+                src="./data/cat_s.mp4"	
+                width="250px">
+              </video> <br>
+              <h4>Input video</h4>
+              </center>    
+          </td>	    
+          <td width = "5px">
+          </td>
+          <td width="150px">
+            <center>
+              <img src="./data/00001.jpg" width="150px"> <br>
+              <h4>MArt style</h4>
+              </center>    
+          </td>	    
+          
+          <td width = "5px">
+          </td>
+          <td width="275px">
+              <center>
+                <video autoplay controls muted loop
+                  src="./data/compare/cat_Brussel_AdaIN.mp4"	
+                  width="275px">
+                </video>	<br>
+                <h4>AdaIN</h4>
+                </center>    
+            </td>	    
+            <td width = "5px">
+            </td>      			   
+
+            <td width="275px">
+              <center>
+                <video autoplay controls muted loop
+                  src="./data/compare/cat_Brussel_Artflow.mp4"	
+                  width="275px">
+                </video>	<br>
+                <h4>ArtFlow</h4>
+                </center>    
+            </td>	    
+
+            <td width = "5px">
+            </td>     
+            <td width="275px">
+              <center>
+                <video autoplay controls muted loop
+                  src="./data/compare/cat_Brussel_MCCNet.mp4"	
+                  width="275px">
+                </video>	<br>
+                <h4>MCCNet</h4>
+                </center>     
+            </td>   
+            <td width = "5px">
+            </td>     
+            <td width="275px">
+              <center>
+                <video autoplay controls muted loop
+                  src="./data/compare/cat_Brussel_our.mp4"	
+                  width="275px">
+                </video>	<br>
+                <h4>Our result</h4>
+                </center>     
+            </td> 
+        </tr>
+      </table>
+      <hr>
+      <!------------------------------------------- end of comparison  -------------------------------------->
+
+          <table align='center'; width=1500px; style="color:burlywood">
+            <tr>
+              <td width = "500px">
+              </td>
+              <td align="center" width = "500px">                
+                <h1><a id="id_bad_cases">Our failure results</a></h1>                       
+              <hr>
+              </td>
+              <td width = "500px">
+              </td>              
+            </tr>
+          </table>
+          <table align='center'; width=1500px>
+            <tr>
+              <td width = "100px">
+              </td>
+              <td align="center" width = "1300px">                              
+                <h4>In the cases that the map art styles compose of disentanglement detail such in this example, 
+                  the disentanglement patterns of the map art style are distributed in the entire images and thus yield distortion to map information.
+                </h4>           
+              <hr>
+              </td>
+              <td width = "100px">
+              </td>              
+            </tr>
+          </table>
+      
+          <table align='center'; width=1000px>
+            <tr>	   
+              <td width = "480px">
+                <center>
+                <img src="./data/00004.jpg" width="300px"> <br>
+                <h4>MArt style with disentanglement patterns</h4>
+              </center>
+              </td>       			    	
+              <td width = "20px">
+              </td>  
+                <td width="500px">
+                  <center>                     
+                      <video autoplay controls muted loop
+                        src="./data/bad_result.mp4"	
+                        width="500px">
+                      </video>		
+                      <br>
+                        <h4>Our failure result</h4>	
+                    </center>    
+                </td>		                                  
+                 
+            </tr>
+            </table>
+          <hr>   
+    
+    <table align='center'; width=1500px; style="color:burlywood">
+      <tr>
+        <td width = "500px">
+        </td>
+        <td align="center" width = "500px">                
+          <h1><a id="id_demo_video">Demo video</a></h1>         
+        <hr>
+        </td>
+        <td width = "500px">
+        </td>              
+      </tr>
+    </table>
+    <table align='center'; width=1500px>
+      <tr>
+        <td width = "150px">
+        </td>
+        <td align="center" width = "1200px">               
+          
+          <h4>More comparisons and discussions coud be found in the demo video</h4>         
+        <hr>
+        </td>
+        <td width = "150px">
+        </td>              
+      </tr>
+    </table>
+
+    <table align='center'; width=1000px; style="color:burlywood">
+      <tr>	          			    	
+          <td width="1200px">
+            <center> 
+              
+                <video controls
+                  src="TOMM_demo_full.mp4"	
+                  width="1200px">
+                </video>			
+              </center>    
+          </td>		                                  
+           
+      </tr>
+      </table>
+    <hr>   
+          
+<footer> 
+  <center>
+    <p>Powered by <a href="https://www.w3schools.com/w3css/default.asp" target="_blank" class="w3-hover-text-green">w3.css</a>, designed by Le</p>
+  </center>
+  
+</footer>
+
+</body>
+</html>
